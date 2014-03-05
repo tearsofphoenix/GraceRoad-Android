@@ -8,52 +8,60 @@
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="44dp"
-            android:id="@+id/navigationView" android:textColor="#ffffff" android:gravity="center|center_vertical|center_horizontal"
+            android:id="@+id/navigationView"
+            android:textColor="#ffffff" android:gravity="center|center_vertical|center_horizontal"
             android:background="#298fde" android:textSize="20dp"/>
     <com.church.GraceRoad.ContentView
             android:layout_width="fill_parent"
-            android:layout_height="438dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
             android:id="@+id/contentView"
             android:layout_gravity="center"/>
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="44dp"
-            android:id="@+id/tabView" android:layout_gravity="bottom">
+            android:id="@+id/tabView"
+            android:layout_gravity="bottom">
         <Button
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-
+                android:layout_height="44dp"
+                android:background="@android:color/transparent"
                 android:drawableTop="@drawable/home"
                 android:textColor="#ffffff"
+                android:textSize="10dp"
                 android:id="@+id/HomeButton"
-                android:text="@string/tabHomeText" />
+                android:text="@string/tabHomeText"
+                android:drawablePadding="-10sp"/>
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-
+                android:background="@android:color/transparent"
                 android:drawableTop="@drawable/resourcetab"
                 android:textColor="#ffffff"
+                android:textSize="10dp"
                 android:id="@+id/ResourceButton"
-                android:drawablePadding="-15sp"
+                android:drawablePadding="-10sp"
                 android:text="@string/tabResourceText" />
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-
+                android:background="@android:color/transparent"
                 android:drawableTop="@drawable/sermontab"
                 android:textColor="#ffffff"
+                android:textSize="10dp"
                 android:id="@+id/SermonButton"
-                android:drawablePadding="-15sp"
+                android:drawablePadding="-10sp"
                 android:text="@string/tabSermonText" />
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-
+                android:background="@android:color/transparent"
                 android:drawableTop="@drawable/preferencetab"
                 android:textColor="#ffffff"
+                android:textSize="10dp"
                 android:id="@+id/PreferenceButton"
-                android:drawablePadding="-15sp"
+                android:drawablePadding="-10sp"
                 android:text="@string/tabPreferenceText" />
     </LinearLayout>
 </LinearLayout>
