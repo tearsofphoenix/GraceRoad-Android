@@ -13,7 +13,7 @@
             android:background="#298fde" android:textSize="20dp"/>
     <com.church.GraceRoad.ContentView
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
             android:id="@+id/contentView"
             android:layout_gravity="center"/>
