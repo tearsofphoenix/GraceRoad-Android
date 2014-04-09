@@ -3,7 +3,13 @@ out/
 
 .idea/workspace.xml
 
+out/production/GraceRoad/com/church/GraceRoad/*.class
+
 *.class
+
+out/production/GraceRoad/com/church/GraceRoad/ContentView.class
+
+out/production/GraceRoad/com/church/GraceRoad/ContentViewObserver.class
 
 out/production/GraceRoad/com/church/GraceRoad/GR.class
 
@@ -12,3 +18,5 @@ out/production/GraceRoad/com/church/GraceRoad/R$attr.class
 out/production/GraceRoad/com/church/GraceRoad/R$drawable.class
 
 out/production/GraceRoad/com/church/GraceRoad/Rect.class
+
+out/production/GraceRoad/com/church/GraceRoad/Size.class
