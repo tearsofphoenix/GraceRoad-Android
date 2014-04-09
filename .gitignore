@@ -2,3 +2,13 @@
 out/
 
 .idea/workspace.xml
+
+*.class
+
+out/production/GraceRoad/com/church/GraceRoad/GR.class
+
+out/production/GraceRoad/com/church/GraceRoad/R$attr.class
+
+out/production/GraceRoad/com/church/GraceRoad/R$drawable.class
+
+out/production/GraceRoad/com/church/GraceRoad/Rect.class

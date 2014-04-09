@@ -7,8 +7,8 @@ import android.graphics.Point;
  */
 public class Rect
 {
-    Point origin;
-    Size size;
+    public Point origin;
+    public Size size;
 
     public Rect(int x, int y, int width, int height)
     {
@@ -27,6 +27,12 @@ public class Rect
         }
 
         return false;
+    }
+
+    @Override
+    public Rect clone()
+    {
+        return new Rect(origin.x, origin.y, size.width, size.height);
     }
 
     @Override

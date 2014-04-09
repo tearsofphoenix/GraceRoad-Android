@@ -1,6 +1,7 @@
 package com.church.GraceRoad;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 
 /**
@@ -45,4 +46,8 @@ public class GR
         }
     }
 
+    public static  void log(String str, Object ... args)
+    {
+        Log.e(GR.LogTag, String.format(str, args));
+    }
 }

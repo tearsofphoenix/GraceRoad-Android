@@ -1,7 +1,6 @@
 package com.church.GraceRoad;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,17 +11,51 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class Main extends Activity implements ContentViewObserver
 {
     private TextView _navigationBarView;
     private LinearLayout _tabView;
     private ContentView _contentView;
+    private ArrayList<ArrayList<ContentView> >  _viewStack = new ArrayList<ArrayList<ContentView>>();
+    private int _currentTabIndex = -1;
+
+    static final int[] tabButtonIDs = {R.id.HomeButton, R.id.ResourceButton, R.id.SermonButton, R.id.PreferenceButton};
     /**
      * Called when the activity is first created.
      */
+    private int _indexOfButton(int id)
+    {
+        for(int iLooper = 0; iLooper < tabButtonIDs.length; ++iLooper)
+        {
+            if (id == tabButtonIDs[iLooper])
+            {
+                return iLooper;
+            }
+        }
+
+        return -1;
+    }
+
+    private void _navigateToTabAtIndex(int index)
+    {
+        if (_currentTabIndex != index)
+        {
+            _currentTabIndex = index;
+            ArrayList<ContentView> views = _viewStack.get(index);
+            int size = views.size();
+            if (size > 0)
+            {
+                ContentView lastView = views.get(size - 1);
+                _updateForContentView(lastView);
+            }
+        }
+    }
+
     private void _viewDidLoad()
     {
-        final int[] viewIDs = {R.id.HomeButton, R.id.ResourceButton, R.id.SermonButton, R.id.PreferenceButton};
+
         _navigationBarView = (TextView)findViewById(R.id.navigationView);
         _tabView = (LinearLayout)findViewById(R.id.tabView);
         _contentView = (ContentView)findViewById(R.id.contentView);
@@ -57,13 +90,24 @@ public class Main extends Activity implements ContentViewObserver
             public void onGlobalLayout()
             {
                 _tabView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                int tabWidth = _tabView.getWidth() / viewIDs.length;
+                int tabWidth = _tabView.getWidth() / tabButtonIDs.length;
 
-                for (int iLooper : viewIDs)
+                for (int iLooper : tabButtonIDs)
                 {
                     Button buttonLooper =  (Button)findViewById(iLooper);
                     //buttonLooper.setBackground(null);
                     buttonLooper.setWidth(tabWidth);
+                    buttonLooper.setOnClickListener(new View.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(View v)
+                        {
+                            Button sender = (Button)v;
+
+                            int index =  _indexOfButton(sender.getId());
+                            _navigateToTabAtIndex(index);
+                        }
+                    });
                 }
 
                 //_tabView.postInvalidate();
@@ -74,7 +118,17 @@ public class Main extends Activity implements ContentViewObserver
 
         //put our first view
         IntroduceView inView = new IntroduceView();
+        _currentTabIndex = 0;
         pushContentView(inView);
+
+        ResourceView resourceView = new ResourceView();
+        _viewStack.get(1).add(resourceView);
+
+        SermonView sermonView = new SermonView();
+        _viewStack.get(2).add(sermonView);
+
+        PreferenceView preferenceView = new PreferenceView();
+        _viewStack.get(3).add(preferenceView);
     }
 
     @Override
@@ -88,13 +142,21 @@ public class Main extends Activity implements ContentViewObserver
 
         setContentView(R.layout.main);
 
+        for (int iLooper = 0; iLooper < tabButtonIDs.length; ++iLooper)
+        {
+            _viewStack.add(new ArrayList<ContentView>());
+        }
         _viewDidLoad();
     }
 
-    public void pushContentView(final ContentView view)
+    private void _updateForContentView(final ContentView view)
     {
         view.setObserver(this);
+
+        _contentView.removeView(view);
         _contentView.addView(view);
+
+        _navigationBarView.setText(view.title());
 
         final ViewTreeObserver observer = _contentView.getViewTreeObserver();
         observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener()
@@ -103,12 +165,18 @@ public class Main extends Activity implements ContentViewObserver
             public void onGlobalLayout()
             {
                 _contentView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                view.layout(0, 0, _contentView.getWidth(), _contentView.getHeight());
-
-                Log.e(GR.LogTag, _contentView.frame().toString());
-
+                Rect bounds = new Rect(0, 0, _contentView.getWidth(), _contentView.getHeight());
+                view.setFrame(bounds);
+//                view.layout(0, 0, _contentView.getWidth(), _contentView.getHeight());
             }
         });
+    }
+
+    public void pushContentView(final ContentView view)
+    {
+         _updateForContentView(view);
+        ArrayList<ContentView> currentStack = _viewStack.get(_currentTabIndex);
+        currentStack.add(view);
     }
     public void popContentView()
     {
