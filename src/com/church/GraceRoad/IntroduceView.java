@@ -5,7 +5,13 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+import fr.days.android.uitableview.view.UITableView;
+
+import java.util.HashMap;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,22 +22,38 @@ import android.widget.TextView;
  */
 public class IntroduceView extends ContentView
 {
+    UILabel _titleLabel;
+    UITableView tableView;
+    ArrayAdapter<HashMap> _data;
+
     public IntroduceView()
     {
         super();
         setTitle("新松江恩典教会");
         setBackgroundColor(Color.RED);
-        //LayoutInflater inflater = (LayoutInflater)this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        //View view = inflater.inflate(R.layout.introduce, null);
-//        View view  = LayoutInflater.from(this.getContext()).inflate(R.layout.introduce, null);
-//        Log.e(GR.LogTag, view.toString());
-//
-//        this.addView(view);
 
-        UILabel titleLabel = new UILabel();
-        titleLabel.setFrame(new Rect(0, 0, 320, 40));
-        titleLabel.setText(R.string.introduce_title0);
-        addView(titleLabel);
+        _titleLabel = new UILabel();
+        _titleLabel.setFrame(new Rect(0, 0, 320, 40));
+        _titleLabel.setText("        以马内利！新松江恩典教会欢迎您！愿神把您带到我们当中，在基督里我们是一家人，愿在以后的生活里我们共同学习神的话语。耶稣爱你");
 
+         addView(_titleLabel);
+
+        TableViewDataSource tableViewAdapter = new TableViewDataSource();
+        tableView = new UITableView(getContext());
+        tableView.setAdapter(tableViewAdapter);
+        tableView.setOnCellClickListener(tableViewAdapter);
+//        tableView.setOnCellLongClickListener(tableViewAdapter);
+//        tableView.setOnCellAccessoryClickListener(tableViewAdapter);
+//        tableView.setOnHeaderClickListener(tableViewAdapter);
+//        tableView.setOnHeaderLongClickListener(tableViewAdapter);
+
+    }
+
+    @Override
+    public void setFrame(final Rect frame)
+    {
+        super.setFrame(frame);
+
+        _titleLabel.setFrame(new Rect(0, 0, frame.size.width, 120));
     }
 }

@@ -2,6 +2,8 @@ package com.church.GraceRoad;
 
 import android.widget.TextView;
 
+import java.nio.Buffer;
+
 /**
  * Created by Mac003 on 14-3-25.
  */
@@ -28,5 +30,13 @@ public class UILabel extends ContentView
     public void setText(int stringID)
     {
         _internal.setText(stringID);
+    }
+    public void setText(CharSequence text)
+    {
+        _internal.setText(text);
+    }
+    public void setText(CharSequence text, TextView.BufferType type)
+    {
+        _internal.setText(text, type);
     }
 }
