@@ -9,7 +9,20 @@
     <string name="tabSermonText">讲道</string>
     <string name="tabPreferenceText">设置</string>
 
+    <!--introduce -->
     <string name="titleIntroduce">新松江恩典教会</string>
     <string name="introduce_title0">    以马内利！新松江恩典教会欢迎您！愿神把您带到我们当中，在基督里我们是一家人，愿在以后的生活里我们共同学习神的话语。耶稣爱你！</string>
+
+    <string name="event_section_title">礼拜日事项</string>
+    <string name="event0">"第一场礼拜  07:30-08:30"</string>
+    <string name="event1">"第二场礼拜  09:00-10:30"</string>
+    <string name="event2">"第三场礼拜  11:00-12:00（韩语）"</string>
+    <string name="event3">"青年礼拜    13:30-15:00"</string>
+    <string name="event4">"成人主日学  11:00-12:00"</string>
+
+    <string name="phone_section_title">联系方式</string>
+    <string name="phone0">"孙牧师  电话：137-9535-2317"</string>
+    <string name="phone1">"张传道  电话：135-6426-9605"</string>
+    <string name="phone2">"李传道  电话：158-0193-5868"</string>
 
 </resources>
