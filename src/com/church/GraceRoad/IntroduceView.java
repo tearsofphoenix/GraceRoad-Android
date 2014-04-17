@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import fr.days.android.uitableview.view.UITableView;
+import com.nakardo.atableview.view.ATableView;
 
 import java.util.HashMap;
 
@@ -23,7 +23,7 @@ import java.util.HashMap;
 public class IntroduceView extends ContentView
 {
     UILabel _titleLabel;
-    UITableView tableView;
+    ATableView _tableView;
     ArrayAdapter<HashMap> _data;
 
     public IntroduceView()
@@ -39,14 +39,10 @@ public class IntroduceView extends ContentView
          addView(_titleLabel);
 
         TableViewDataSource tableViewAdapter = new TableViewDataSource();
-        tableView = new UITableView(getContext());
-        tableView.setAdapter(tableViewAdapter);
-        tableView.setOnCellClickListener(tableViewAdapter);
-//        tableView.setOnCellLongClickListener(tableViewAdapter);
-//        tableView.setOnCellAccessoryClickListener(tableViewAdapter);
-//        tableView.setOnHeaderClickListener(tableViewAdapter);
-//        tableView.setOnHeaderLongClickListener(tableViewAdapter);
+        _tableView = new ATableView(ATableView.ATableViewStyle.Plain, getContext());
+        _tableView.setDataSource(tableViewAdapter);
 
+        addView(_tableView);
     }
 
     @Override
@@ -55,5 +51,6 @@ public class IntroduceView extends ContentView
         super.setFrame(frame);
 
         _titleLabel.setFrame(new Rect(0, 0, frame.size.width, 120));
+        GR.setFrame(_tableView, new Rect(0, 120, frame.size.width, frame.size.height - 120));
     }
 }
