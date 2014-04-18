@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import com.nakardo.atableview.uikit.UILabel;
 import com.nakardo.atableview.view.ATableView;
 
 import java.util.HashMap;
@@ -32,8 +33,8 @@ public class IntroduceView extends ContentView
         setTitle("新松江恩典教会");
         setBackgroundColor(Color.RED);
 
-        _titleLabel = new UILabel();
-        _titleLabel.setFrame(new Rect(0, 0, 320, 40));
+        _titleLabel = new UILabel(GR.viewContext);
+        GR.setFrame(_titleLabel, new Rect(0, 0, 320, 40));
         _titleLabel.setText("        以马内利！新松江恩典教会欢迎您！愿神把您带到我们当中，在基督里我们是一家人，愿在以后的生活里我们共同学习神的话语。耶稣爱你");
 
          addView(_titleLabel);
@@ -50,7 +51,7 @@ public class IntroduceView extends ContentView
     {
         super.setFrame(frame);
 
-        _titleLabel.setFrame(new Rect(0, 0, frame.size.width, 120));
+        GR.setFrame(_titleLabel, new Rect(0, 0, frame.size.width, 120));
         GR.setFrame(_tableView, new Rect(0, 120, frame.size.width, frame.size.height - 120));
     }
 }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import com.nakardo.atableview.uikit.UILabel;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -104,9 +105,9 @@ public class ResourceView extends ContentView  implements ListAdapter
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
-        ResourceCell cell = new ResourceCell();
+        UILabel cell = new UILabel(GR.viewContext);
         cell.setText("Cell" + position);
-        cell.setFrame(new Rect(0, 300, 300, 40));
+        GR.setFrame(cell,  new Rect(0, 300, 300, 40));
         return cell;
     }
 
