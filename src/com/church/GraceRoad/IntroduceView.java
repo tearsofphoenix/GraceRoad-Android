@@ -1,14 +1,7 @@
 package com.church.GraceRoad;
 
-import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 import com.nakardo.atableview.uikit.UILabel;
 import com.nakardo.atableview.view.ATableView;
 
@@ -39,7 +32,7 @@ public class IntroduceView extends ContentView
 
          addView(_titleLabel);
 
-        TableViewDataSource tableViewAdapter = new TableViewDataSource();
+        IntroduceTableViewDataSource tableViewAdapter = new IntroduceTableViewDataSource();
         _tableView = new ATableView(ATableView.ATableViewStyle.Plain, getContext());
         _tableView.setDataSource(tableViewAdapter);
 

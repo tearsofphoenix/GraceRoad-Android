@@ -11,7 +11,7 @@ import com.nakardo.atableview.view.ATableViewCell;
 /**
  * Created by Mac003 on 14-4-10.
  */
-public class TableViewDataSource extends ATableViewDataSource
+public class IntroduceTableViewDataSource extends ATableViewDataSource
 {
     private enum SimpleListSection { ROWS, SHOW_SELECTED_ROWS, ADD_MORE };
     private SimpleListSection getListSection(int section) {
